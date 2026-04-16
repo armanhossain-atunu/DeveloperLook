@@ -1,61 +1,100 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NavButton from './NavButton';
+import NaveLogo from '../Logo/NaveLogo';
+
+const NAV_LINKS = [
+    { label: "Expertises", href: "#" },
+    { label: "Work", href: "#" },
+    { label: "About", href: "#" },
+    { label: "Contact", href: "#" },
+];
+
 const Navbar = () => {
-    // const navItems = < >
-    //     <li className='hover:bg-black hover:text-white rounded-lg'><a href='#'>Expertises</a></li>
-    //     <li className='hover:bg-black hover:text-white rounded-lg'><a href='#'>Work</a></li>
-    //     <li className='hover:bg-black hover:text-white rounded-lg'><a href='#'>About</a></li>
-    //     <li className='hover:bg-black hover:text-white rounded-lg'><a href='#'>Contact</a></li>
-    // </>
-    const navItems = (
-        <>
-            <NavButton>
-                <li className="px-3 py-1 rounded-lg transition-colors duration-200 hover:bg-black hover:text-white cursor-pointer">
-                    <a href="#">Expertises</a>
-                </li>
-            </NavButton>
-            <NavButton>
-                <li className="px-3 py-1 rounded-lg transition-colors duration-200 hover:bg-black hover:text-white cursor-pointer">
-                    <a href="#">Work</a>
-                </li>
-            </NavButton>
-            <NavButton>
-                <li className="px-3 py-1 rounded-lg transition-colors duration-200 hover:bg-black hover:text-white cursor-pointer">
-                    <a href="#">About</a>
-                </li>
-            </NavButton>
-            <NavButton>
-                <li className="px-3 py-1 rounded-lg transition-colors duration-200 hover:bg-black hover:text-white cursor-pointer">
-                    <a href="#">Contact</a>
-                </li>
-            </NavButton>
-        </>
-    );
+    const [isOpen, setIsOpen] = useState(false);
+
+    const navItems = NAV_LINKS.map(({ label, href }) => (
+        <div key={label}>
+            <li className="py-2 px-1.5">
+                <a
+                    href={href}
+                    onClick={() => setIsOpen(false)}
+                    className="rounded-lg transition-colors  duration-200 hover:text-white cursor-pointer"
+                >
+                    <NavButton>{label}</NavButton>
+                </a>
+            </li>
+        </div>
+    ));
+
     return (
         <div>
             <div className="navbar">
+
+                {/* Logo — left */}
                 <div className="navbar-start">
-                    <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-                        </div>
-                        <ul
-                            tabIndex="-1"
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            {navItems}
-                        </ul>
-                    </div>
-                    <a className="btn btn-ghost text-xl">daisyUI</a>
+                    <NaveLogo />
                 </div>
+
+                {/* Nav links — center (desktop only) */}
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 bg-white rounded-lg">
+                    <ul className="menu-horizontal bg-white rounded-lg">
                         {navItems}
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <a className="btn">Button</a>
+
+                {/* Right side */}
+                <div className="navbar-end flex items-center gap-2">
+
+                    {/* CTA button — desktop only */}
+                    <a className="btn px-1.5 bg-[rgb(252,184,250)] hover:-rotate-10 transition-all duration-200 hidden lg:flex">
+                        Get Results <span className="bg-white p-1.5 rounded-lg">🔥</span>
+                    </a>
+
+                    {/* Animated Hamburger — mobile only */}
+                    <div className="lg:hidden relative ">
+                        <button
+                            onClick={() => setIsOpen(!isOpen)}
+                            // className="btn   flex flex-col justify-center items-center w-10 h-10 gap-0"
+                             className={`btn flex flex-col justify-center items-center w-10 h-10 gap-0 transition-colors duration-300
+        ${isOpen ? 'bg-[#fff]' : ' bg-[rgb(252,184,250)]'}`}
+                            aria-label="Toggle menu"
+                        >
+                            {/* Top bar */}
+                            <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ease-in-out
+                                ${isOpen ? 'rotate-45 translate-y-1.5' : ''}`}
+                            />
+                            {/* Middle bar */}
+                            <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ease-in-out my-1
+                                ${isOpen ? 'opacity-0 scale-x-0' : ''}`}
+                            />
+                            {/* Bottom bar */}
+                            <span className={`block w-5 h-0.5 bg-current transition-all duration-300 ease-in-out
+                                ${isOpen ? '-rotate-45 -translate-y-1.5' : ''}`}
+                            />
+                        </button>
+
+                        {/* Dropdown */}
+                        {isOpen && (
+                            <ul className="absolute text-center right-0 top-12 bg-[rgb(252,184,250)] rounded-box z-10 w-96 p-2 shadow animate-[slideDown_0.9s_ease-out]">
+                                {navItems}
+                                <li className="mt-2 px-1.5">
+                                    <a className="btn w-40 bg-black text-white hover:-rotate-10 transition-all duration-200">
+                                        Get Results <span className="bg-white p-1.5 rounded-lg">🔥</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        )}
+                    </div>
+
                 </div>
             </div>
+
+            <style>{`
+                @keyframes slideDown {
+                    from { opacity: 0; transform: translateY(-100px); }
+                    to   { opacity: 1; transform: translateY(0); }
+                }
+            `}</style>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const NavButton = ({children}) => {
+const NavButton = ({children }) => {
   return (
     <StyledWrapper>
       <button className="button button-item">
@@ -32,9 +32,9 @@ const StyledWrapper = styled.div`
     // height: 3.5rem;
     align-items: center;
     border-radius: 9999px;
-    // padding-left: 2rem;
-    // padding-right: 2rem;
-    font-family: Segoe UI;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    // font-family: Segoe UI;
     // font-size: 1.2rem;
     font-weight: 640;
     // color: #ffffff;
@@ -107,9 +107,7 @@ const StyledWrapper = styled.div`
     transform: scale(0);
   }
 
-  .button-bg-layer.-purple {
-    background-color: rgba(163, 116, 255);
-  }
+  
 
   .button-bg-layer.-red {
     background-color: red;
