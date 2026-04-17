@@ -7,6 +7,7 @@ const HomePage = () => {
         <div>
           <Navbar/>
           <Hero/>
+          
         </div>
     );
 };
