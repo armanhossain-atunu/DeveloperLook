@@ -1,0 +1,10 @@
+.mySwiper {
+  height: 100vh;
+  width: 100%;
+}
+
+.mySwiper .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
