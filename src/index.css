@@ -7,3 +7,7 @@ body{
    
     font-family: 'Inter', sans-serif;
 }
+#overlay{
+  clip-path: polygon(0 58%, 100% 41%, 100% 100%, 0% 100%);
+
+}

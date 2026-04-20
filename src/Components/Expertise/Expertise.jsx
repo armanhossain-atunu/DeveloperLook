@@ -14,7 +14,7 @@ const Expertise = () => {
             mousewheel={true}
             //   pagination={{ clickable: true }}
             modules={[Mousewheel, Pagination]}
-            className="mySwiper mx-2 mt-20"
+            className="mySwiper max-w-7xl mx-auto mt-20"
             style={{ height: '100vh' }}
         >
             <SwiperSlide>
@@ -123,7 +123,7 @@ const Expertise = () => {
                                 <span>Slimme strategie. Sterke start.</span>
                                 We duiken diep in jouw merk, doelgroep en doelen. En vertalen data naar een duidelijk plan met formats die écht impact maken. Zo weet je precies waarom het werkt
                             </p>
-                            <button className="mt-10 bg-[#fa5424]  rotate-0 hover:rotate-6 flex justify-between gap-3 items-center p-2 rounded-lg text-xl font-bold  transition-colors duration-300">
+                            <button className="mt-10 bg-[#fa5424]  rotate-0 hover:rotate-6 flex justify-between gap-3 items-center p-2 rounded-lg text-xl font-bold transition-colors duration-300">
                                 Leer ons kennen <span className="bg-black text-white rounded-lg p-3"><MoveRight /></span>
                             </button>
                         </div>
